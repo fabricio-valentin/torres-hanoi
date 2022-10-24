@@ -167,7 +167,7 @@ function Cuadro (cajaInicial){
     this.tieneFichas = function(){
         let rellenos = 0;
 
-        for (var i; i < this.contenido.length; i++){
+        for (var i; i < this.contenido.length; i++){    //Se debe inicializar la variable i a cero (i = 0).
             if (this.contenido[i] instanceof Relleno){
                 rellenos++;
             }
@@ -190,9 +190,9 @@ function Cuadro (cajaInicial){
 
     this.quitarFichaSuperior = function (){
         for ( var i = 0; i < this.contenido.length; i++){
-            if (!(this.contenido[i]instanceof Relleno)){
+            if (!(this.contenido[i]instanceof Relleno)){    //Separar this.contenido[i] de instanceof. Estan pegados.
                 fichaSeleccionada = this.contenido[i];
-                this.contenido = new Relleno();
+                this.contenido = new Relleno();             //this.contenido le falta [i], debería ser this.contenido[i].
                 break;
             }
         }
@@ -235,8 +235,8 @@ function seleccionarOrigenDestino(cuadro){
             if(!destino.tieneFichas() || (origen.obtenerFichaSuperior().valor < destino.obtenerFichaSuperior().valor )) {
             origen.quitarFichaSuperior();
             origen.redibujarCaja ();
-            origen.insertarFichaSuperior();
-            origen.redibujarCaja();
+            origen.insertarFichaSuperior();     //cambiar origen por destino.
+            origen.redibujarCaja();             //cambiar origen por destino.
             }
 
         }
